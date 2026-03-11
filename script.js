@@ -37,11 +37,11 @@ class StarField {
 
   draw(time) {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     for (const star of this.stars) {
       const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
       const opacity = star.opacity * (0.5 + twinkle * 0.5);
-      
+
       this.ctx.beginPath();
       this.ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
       this.ctx.fillStyle = `rgba(240, 215, 140, ${opacity})`;
@@ -73,7 +73,7 @@ class StarField {
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-links a');
-  
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
@@ -119,18 +119,18 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // ============ SCROLL REVEAL ANIMATION ============
 function initScrollReveal() {
   const cards = document.querySelectorAll('.character-card');
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
         // Stagger animation based on card position in the viewport batch
         const allVisible = [...entries].filter(e => e.isIntersecting);
         const staggerIndex = allVisible.indexOf(entry);
-        
+
         setTimeout(() => {
           entry.target.classList.add('visible');
         }, staggerIndex * 100);
-        
+
         observer.unobserve(entry.target);
       }
     });
@@ -186,7 +186,7 @@ function openModal(cardElement) {
   const modalData = cardElement.querySelector('.card-modal-data');
   const version = modalData?.dataset.version || '';
   const fullDesc = modalData?.dataset.descFull || cardElement.querySelector('.card-description').textContent;
-  
+
   // Get image
   const cardImg = cardElement.querySelector('.card-image-wrapper img');
   const hasImage = cardImg && !cardImg.closest('.card-image-placeholder');
@@ -290,7 +290,7 @@ document.addEventListener('keydown', (e) => {
 
 // ============ SMOOTH SCROLL ============
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
